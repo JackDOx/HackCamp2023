@@ -42,8 +42,6 @@ router.get('/auth/discord/callback',
 router.patch('/updateProfile', authController.isAuthenticated, userController.updateProfile);
 
 
-router.get('/createProfile', async (req, res) => {});
-
 router.get('/logout', authController.logout);
 
 
