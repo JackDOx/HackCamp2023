@@ -10,7 +10,7 @@ const App = () => {
   return (
     <div>
       {/* <Header /> */}
-      <RecommendedProfile />
+      {/* <RecommendedProfile /> */}
       {/* <UserProfile /> */}
       <DiscordLoginButton />
     </div>
