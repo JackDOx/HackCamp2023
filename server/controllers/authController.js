@@ -66,6 +66,7 @@ exports.protect = catchAsync(async (req, res, next) => {
 // Middleware to check if the user is authenticated
 exports.isAuthenticated = catchAsync(async (req, res, next) => {
   if (req.isAuthenticated()) {
+    req.user = await User.findOne({discordName: req.user.username});
     next();
   } else {
     next( new AppError('The user is not authenticated!', 403));

@@ -18,7 +18,20 @@ const userSchema = new mongoose.Schema(
     discordName: {
       type: String,
       required: [true, 'Enter a discord name'],
+      index: true
     },
+
+    swiped: [
+      {
+        type:String
+      }
+    ],
+
+    matched: [
+      {
+        type: String
+      }
+    ],
 
     photo: {
       type: String,
