@@ -16,7 +16,7 @@ router.patch('/resetPassword/:token', authController.resetPassword);
 router.use(authController.protect); // this middleware will be applied all the code below this line
 
 router.patch('/updateMyPassword', authController.updatePassword);
-router.get('/me', userController.getMe, userController.getUser);
+router.get('/profile', userController.getMe, userController.getUser);
 router.patch('/updateMe', 
   userController.uploadUserPhoto,
   userController.resizeUserPhoto,
