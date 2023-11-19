@@ -20,7 +20,7 @@ router.get('/auth/discord/callback',
       if (existingUser) {
         // User with the given username already exists
         console.log(`User with username ${req.user.username} already exists.`);
-        res.redirect('/api/users/profile');
+        res.redirect('/home');
       } else {
         // User with the given username doesn't exist
         const doc = User.create({
