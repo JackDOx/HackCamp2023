@@ -3,7 +3,7 @@
 /* Style the Discord button */
 .discord-button {
     font-family: 'Roboto', sans-serif; /* Use the Roboto font */
-    background-color: #7289DA; /* Discord blue color */
+    background-color: #93a5e7; /* Discord blue color */
     color: #fff; /* Text color */
     padding: 15px 20px; /* Adjust padding as needed */
     font-size: 18px; /* Adjust font size as needed */
@@ -18,7 +18,7 @@
   
   /* Hover effect for the button */
   .discord-button:hover {
-    background-color: #677bc4; /* Darker Discord blue color on hover */
+    background-color: rgb(131, 151, 225); /* Darker Discord blue color on hover */
   }
   
   /* Discord logo styling */

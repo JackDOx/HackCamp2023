@@ -13,6 +13,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<WelcomePage />} />
         <Route path="/createProfile" element={<UserProfile />} />
+        <Route path="/home" element={<RecommendedProfile />} />
       </Routes>
     </Router>
   );

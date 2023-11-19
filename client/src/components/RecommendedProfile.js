@@ -34,7 +34,7 @@ function RecommendedProfile() {
           <span>{preferredRole}</span>
         </div>
 
-        {/* Add heart and X buttons */}
+        /* Add heart and X buttons */
         <div className="button-container">
           <button className="heart-button">
             <i className="fa fa-heart"></i>
