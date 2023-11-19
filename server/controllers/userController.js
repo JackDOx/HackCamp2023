@@ -82,4 +82,8 @@ exports.updateProfile = catchAsync(async (req, res, next) => {
           return next(updateError); // Pass the update error to the error handling middleware
         });
     });
+    res.status(200).json({
+      status: 'Success',
+      users: doc
+    });
 });

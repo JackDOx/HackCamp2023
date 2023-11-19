@@ -31,7 +31,7 @@ router.get('/auth/discord/callback',
           interests: 'I love Porsche'
         });
         // console.log(doc);
-        res.redirect('/createProfile');
+        res.redirect('/updateProfile');
       }
     });
       
