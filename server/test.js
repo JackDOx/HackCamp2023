@@ -7,10 +7,9 @@ const app = express();
 const port = 3000;
 
 // Replace these values with your Discord application's credentials
-const discordClientId = '1175587561037643816';
-const discordClientSecret = 'tAGbKaJfMFDJU_Xw5StCzR8ubsY4FCtD';
-const discordRedirectUri = 'http://localhost:3000/auth/discord/callback';
-
+const discordClientId = process.env.DISCORDCLIENT;
+const discordClientSecret = process.env.DISCORDCLIENTSECRET;
+const discordRedirectUri = process.env.DISCORDREDIRECT;
 // Passport setup
 passport.use(new DiscordStrategy({
   clientID: discordClientId,
@@ -80,8 +79,3 @@ function isAuthenticated(req, res, next) {
   }
   res.redirect('/');
 }
-
-// Start the server
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});

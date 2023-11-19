@@ -37,7 +37,7 @@ const server = app.listen(port, () => {
 
 // Handling unhandled exceptions . Ie. database password is wrong
 process.on('unhandledRejection', err => {
-    // console.log(err.name, err.message);
+    console.log(err.name, err.message);
     server.close(() =>{
         process.exit(1);
     })

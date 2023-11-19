@@ -10,6 +10,11 @@ const compression = require('compression');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
+const passport = require('passport');
+const session = require('express-session');
+const DiscordStrategy = require('passport-discord').Strategy;
+
+
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 
@@ -17,7 +22,6 @@ const userRouter = require('./routes/userRoutes');
 
 const cookieParser = require('cookie-parser');
 
-const bookingController = require('./controllers/bookingController');
 
 const app = express();
 
@@ -55,7 +59,7 @@ const limiter = rateLimit({
 app.use('/api', limiter); // apply this limiter to /api
 
 // webhook need to be read in a raw data, not in json format
-app.post('/webhook-checkout', bodyParser.raw({ type: 'application/json' }), bookingController.webhookCheckout);
+// app.post('/webhook-checkout', bodyParser.raw({ type: 'application/json' }), ........);
 // Body parser, reading data from body into req.body
 app.use(express.json({ limit: '10kb'})); // limit to 10kb request
 app.use(express.urlencoded({ extended: true, limit: '10kb' })); // this code is to parse the data from .form
@@ -79,6 +83,42 @@ app.use(hpp({
 })); // Prevent parameter pollution
 
 app.use(compression());
+
+const discordClientId = process.env.DISCORDCLIENT;
+const discordClientSecret = process.env.DISCORDCLIENTSECRET;
+const discordRedirectUri = process.env.DISCORDREDIRECT;
+// Passport setup
+passport.use(new DiscordStrategy({
+  clientID: discordClientId,
+  clientSecret: discordClientSecret,
+  callbackURL: discordRedirectUri,
+  scope: ['identify', 'email'], // Add additional scopes as needed
+}, (accessToken, refreshToken, profile, done) => {
+  // This callback will be called after a successful authentication
+  return done(null, profile);
+}));
+
+// Serialize user information into the session
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+
+// Deserialize user from the session
+passport.deserializeUser((obj, done) => {
+  done(null, obj);
+});
+
+// Configure express-session
+app.use(session({
+  secret: 'bugattichiron', // Replace with a secret key for session management
+  resave: false,
+  saveUninitialized: false,
+}));
+
+// Initialize Passport and restore authentication state, if any, from the session
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 // Test middleware
 app.use((req,res,next) => {

@@ -1,41 +1,57 @@
 const express = require('express');
-
+const passport = require('passport');
+const session = require('express-session');
+const DiscordStrategy = require('passport-discord').Strategy;
 const userController = require('./../controllers/userController');
 const authController = require('./../controllers/authController');
-
+const User = require('./../models/userModel');
 const router = express.Router();
 
-router.post('/signup', authController.signup);
-router.post('/login', authController.login);
+router.get('/auth/discord', passport.authenticate('discord'));
+router.get('/auth/discord/callback', 
+  passport.authenticate('discord', { failureRedirect: '/' }), (req, res) => {
+    User.findOne({ discordName: req.user.username }, (err, existingUser) => {
+      if (err) {
+        // Handle the error
+        console.error(err);
+        return;
+      }
+    
+      if (existingUser) {
+        // User with the given username already exists
+        console.log(`User with username ${req.user.username} already exists.`);
+      } else {
+        // User with the given username doesn't exist
+        const doc = User.create({
+          name: 'Jack',
+          role: 'user',
+          discordName: req.user.username,
+          skillLevel: 'Beginner',
+          userRole: 'Developer',
+          interests: 'I love Porsche'
+        });
+        console.log(doc);
+      }
+    });
+      
+    // res.redirect('/api/users/profile');
+    res.redirect('/createProfile');
+});
+
+
+router.get('/createProfile', async (req, res) => {});
+
 router.get('/logout', authController.logout);
 
-router.post('/forgotPassword', authController.forgotPassword);
-router.patch('/resetPassword/:token', authController.resetPassword);
 
 // This part requires authenticated logged in user
-router.use(authController.protect); // this middleware will be applied all the code below this line
+// router.use(authController.protect); // this middleware will be applied all the code below this line
 
-router.patch('/updateMyPassword', authController.updatePassword);
-router.get('/profile', userController.getMe, userController.getUser);
-router.patch('/updateMe', 
-  userController.uploadUserPhoto,
-  userController.resizeUserPhoto,
-  userController.updateMe);
-router.delete('/deleteMe', userController.deleteMe);
 
-// this part is restricte to Admin only
-router.use(authController.restrictTo('admin'));
+router.get('/profile', authController.isAuthenticated, userController.getProfile);
 
-router
-.route('/')
-  .get(userController.getAllUsers)
-  .post(userController.createUser);
+router.get('/getAllUsers', userController.getAllUsers);
 
-router
-.route('/:id')
-  .get(userController.getUser)
-  .patch(userController.updateUser)
-  .delete(userController.deleteUser);
 
 
 
