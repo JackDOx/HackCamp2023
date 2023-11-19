@@ -1,0 +1,39 @@
+/* Reset default margin and padding */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  
+  /* Center the content both vertically and horizontally */
+  .welcome-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Make it take up the entire viewport height */
+  }
+  
+  /* Style the logo as big as the Google logo */
+  .logo {
+    max-width: 272px; /* Adjust the width as needed */
+    max-height: 92px; /* Adjust the height as needed */
+  }
+  
+  /* Style the Discord button */
+  .discord-button {
+    background-color: #7289DA; /* Discord color */
+    color: #fff; /* Text color */
+    padding: 10px 20px; /* Adjust padding as needed */
+    font-size: 18px; /* Adjust font size as needed */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px; /* Spacing between the logo and button */
+  }
+  
+  /* Hover effect for the button */
+  .discord-button:hover {
+    background-color: #6272a4; /* Darker Discord color on hover */
+  }
+  
