@@ -98,7 +98,7 @@ exports.getRecommendations = catchAsync( async (req, res, next) => {
 
 exports.getMatched = catchAsync(async (req, res, next) => {
   try {
-    const matched = req.body.matched;
+    const matched = req.user.matched;
     console.log(matched);
 
     const doc = await Promise.all(
