@@ -21,9 +21,18 @@ function UserProfile() {
   const [pronouns, setPronouns] = useState('');
   const [interests, setInterests] = useState('');
   const [lookingForTeammates, setLookingForTeammates] = useState(false);
+  const [profilePicPreview, setProfilePicPreview] = useState(null);
 
   const handleFileChange = (file) => {
     setProfilePic(file);
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      setProfilePicPreview(reader.result);
+    };
+    if (file) {
+      reader.readAsDataURL(file);
+    }
   };
 
   // Refs for form elements
@@ -98,7 +107,7 @@ function UserProfile() {
           />
         </div>
 
-        <label htmlFor="interests">Interests / Project Vision:</label>
+        <label htmlFor="interests">Interests / Project Vision</label>
         <textarea
           ref={interestsRef}
           id="interests"

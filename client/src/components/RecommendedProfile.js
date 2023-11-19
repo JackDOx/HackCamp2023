@@ -4,6 +4,7 @@ import './UserProfile.css'; // Reuse the same CSS if it's suitable
 function RecommendedProfile(props) {
   // Assume props contain the data received from the backend
   const { name, pronouns, skillLevel, interests, preferredRole, lookingForTeammates } = props.data;
+  
 
   return (
     <div className="user-profile-card">
@@ -32,12 +33,15 @@ function RecommendedProfile(props) {
           <span>{preferredRole}</span>
         </div>
 
-        <div className="flex-container">
-          <label>Looking for Teammates?</label>
-          <span>{lookingForTeammates ? 'Yes' : 'No'}</span>
+        {/* Add heart and X buttons */}
+        <div className="button-container">
+          <button className="heart-button">
+            <i className="fa fa-heart"></i>
+          </button>
+          <button className="cross-button">
+            <i className="fa fa-times"></i>
+          </button>
         </div>
-
-        {/* You can add more fields as per your requirement */}
       </form>
     </div>
   );

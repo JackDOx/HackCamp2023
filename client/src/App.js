@@ -9,8 +9,9 @@ const App = () => {
   return (
     <div>
       {/* <Header /> */}
-      {/* <RecommendedProfile /> */}
-      <UserProfile />
+      <RecommendedProfile />
+      {/* <UserProfile /> */}
+      <DiscordLoginButton />
     </div>
   );
 };
