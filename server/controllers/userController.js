@@ -11,15 +11,13 @@ const AppError = require('./../utils/appError');
 const Email = require('./../utils/email');
 
 exports.getProfile = catchAsync( async (req, res, next) => {
-  const doc = user.findOne(req.user.findOne({ discordName: req.user.userName}));
   if (!doc) {
     res.status(404).json({ status: 'No user found'});
 
   } else {
-    res.status(200).json(doc);
+    res.status(200).json(req.user);
   }
 } );
-
 
 exports.getAllUsers = catchAsync( async (req, res, next) => {
   const doc = await User.find();
@@ -28,3 +26,69 @@ exports.getAllUsers = catchAsync( async (req, res, next) => {
     users: doc
   });
 });
+
+
+exports.getRecommendations = catchAsync( async (req, res, next) => {
+  const roleToFind = req.body.role;
+  const doc = await User.find({userRole: roleToFind});
+  doc.filter( user => !req.user.swiped.includes(user.discordName));
+  res.status(200).json({
+    status: 'success',
+    users: doc
+  });
+});
+
+exports.swipe = catchAsync( async (req, res, next) => {
+  if (!req.body.user) {
+    res.status(404).json({
+      status: 'failed',
+      message: 'no user found with this discordName'
+    });
+  }
+  if (req.user.swiped.includes(req.body.user.discordName)) {
+    res.status(302).json({
+      status: 'failed',
+      message: 'already swiped this user'
+    });
+  }
+
+  if (req.body.user.swiped.includes(req.user.discordName)) {
+    match(req, res, next);
+  } else {
+    const added = req.user.swiped.push(req.body.user.discordName);
+
+    const doc = await User.findOneAndUpdate({discordName: req.user.discordName}, {swiped: added}, {new: true});
+    res.status(200).json({
+      status: 'success',
+      message: 'successfully swiped'
+    })
+  }
+  
+});
+
+const match = catchAsync( async (req, res, next) => {
+  const removed = req.body.user.swiped.removeItemFromArray(req.body.user.swiped, req.user.discordName);
+  const matched1 = req.user.matched.push(req.body.user.discordName);
+  const matched2 = req.body.user.matched.push(req.user.discordName);
+  const doc1 = await User.findOneAndUpdate({discordName: req.body.user.discordName}, {swiped: removed, matched: matched1}, {new: true});
+  const doc2 = await User.findOneAndUpdate({discordName: req.user.discordName}, {swiped: removed, matched: matched2}, {new: true});
+
+  if(doc1 & doc2) {
+    res.status(200).json({
+      status: 'success',
+      message: 'Found a match'
+    });
+  }
+});
+
+
+function removeItemFromArray(array, itemToRemove) {
+  const indexToRemove = array.indexOf(itemToRemove);
+
+  if (indexToRemove !== -1) {
+    array.splice(indexToRemove, 1);
+    return true; // Indicates that the item was found and removed
+  }
+
+  return false; // Indicates that the item was not found in the array
+}

@@ -20,6 +20,7 @@ router.get('/auth/discord/callback',
       if (existingUser) {
         // User with the given username already exists
         console.log(`User with username ${req.user.username} already exists.`);
+        res.redirect('/api/users/profile');
       } else {
         // User with the given username doesn't exist
         const doc = User.create({
@@ -39,12 +40,13 @@ router.get('/auth/discord/callback',
 
 });
 
-router.patch('/updateProfile', authController.isAuthenticated, userController.updateProfile);
+// router.patch('/updateProfile', authController.isAuthenticated, userController.updateProfile);
 
+router.get('/logout', authController.isAuthenticated, authController.logout);
 
-router.get('/logout', authController.logout);
+router.get('/swipe', authController.isAuthenticated, userController.swipe);
 
-
+router.get('/recommendations', authController.isAuthenticated, userController.getRecommendations);
 // This part requires authenticated logged in user
 // router.use(authController.protect); // this middleware will be applied all the code below this line
 
