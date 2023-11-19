@@ -30,13 +30,16 @@ router.get('/auth/discord/callback',
           userRole: 'Developer',
           interests: 'I love Porsche'
         });
-        console.log(doc);
+        // console.log(doc);
+        res.redirect('/createProfile');
       }
     });
       
     // res.redirect('/api/users/profile');
-    res.redirect('/createProfile');
+
 });
+
+router.patch('/updateProfile', authController.isAuthenticated, userController.updateProfile);
 
 
 router.get('/createProfile', async (req, res) => {});
