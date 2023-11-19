@@ -45,8 +45,7 @@ const userSchema = new mongoose.Schema(
     interests: {
       type: String,
       required: [true, 'Please provide your interests so we can best match you'],
-      maxlength: [100, 'Enter up to 3 interests'],
-      default: 'Porsche'
+      maxlength: [200, 'Enter up to 3 interests']
     },
     lookingForTeam: {
       type: Boolean,
