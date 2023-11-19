@@ -1,10 +1,15 @@
 const crypto = require('crypto');
 const mongoose = require('mongoose');
-const validator = require('validator');
+// const validator = require('validator');
 const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema(
   {
+    role: {
+      type: String,
+      enum: ['admin', 'guide', 'lead_guide', 'user'],
+      default: 'user'
+    },
     name: {
       type: String,
       required: [true, 'Choose a username']
@@ -18,31 +23,34 @@ const userSchema = new mongoose.Schema(
     // },
     photo: {
       type: String,
+      required: [true, 'Please provide a photo'],
       default: 'default.jpg'
-    },
-    skillLevel: {
-      type: String,
-      enum: ['Beginner', 'Intermediate', 'Advanced'],
-      default: 'Beginner'
     },
     pronoun: {
       type: String,
       enum: ['He/Him', 'She/Her', 'They/Them', 'Prefer not to say'],
       default: 'Prefer not to say'
     },
-    role: {
+    skillLevel: {
       type: String,
-      enum: ['admin', 'guide', 'lead_guide', 'user'],
-      default: 'user'
+      required: [true, 'Please provide your skill level'],
+      enum: ['Beginner', 'Intermediate', 'Advanced'],
+      default: 'Beginner'
     },
     userRole: {
       type: String,
+      required: [true, 'Please provide your preferred role'],
       enum: ['Developer', 'Designer', 'Product Manager', 'Presenter'],
       default: 'user'
     },
     interests: {
       type: String,
+      required: [true, 'Please provide your interests so we can best match you'],
       maxlength: [100, 'Enter up to 3 interests']
+    },
+    lookingForTeam: {
+      type: Boolean,
+      default: true
     },
     password: {
       type: String,
