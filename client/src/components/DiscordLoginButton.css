@@ -1,0 +1,30 @@
+/* DiscordLoginButton.css */
+
+/* Style the Discord button */
+.discord-button {
+    font-family: 'Roboto', sans-serif; /* Use the Roboto font */
+    background-color: #7289DA; /* Discord blue color */
+    color: #fff; /* Text color */
+    padding: 15px 20px; /* Adjust padding as needed */
+    font-size: 18px; /* Adjust font size as needed */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center; /* Center the content horizontally */
+    height: 40px;
+    width: auto;
+  }
+  
+  /* Hover effect for the button */
+  .discord-button:hover {
+    background-color: #677bc4; /* Darker Discord blue color on hover */
+  }
+  
+  /* Discord logo styling */
+  .discord-logo {
+    width: 40px; /* Adjust the logo width as needed */
+    height: auto; /* Adjust the logo height as needed */
+    margin-right: 10px; /* Spacing between the logo and text */
+  }
+  

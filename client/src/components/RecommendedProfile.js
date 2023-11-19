@@ -2,11 +2,10 @@ import React from 'react';
 import './UserProfile.css'; // Reuse the same CSS if it's suitable
 import axios from 'axios';
 
-function RecommendedProfile(props) {
-  const response = axios.get('api/users/recommendations');
-  console.log(response);
-  const { name, pronouns, skillLevel, interests, preferredRole, lookingForTeammates } = props.data;
-  
+function RecommendedProfile() {
+  const props = axios.get('http://localhost:3001/api/users/recommendations');
+  // Assume props contain the data received from the backend
+  const { name, pronouns, skillLevel, interests, preferredRole, lookingForTeammates } = props.users;
 
   return (
     <div className="user-profile-card">

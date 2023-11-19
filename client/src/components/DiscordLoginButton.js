@@ -1,23 +1,22 @@
 // DiscordLoginButton.js
 
 import React from 'react';
-import axios from 'axios';
+import DiscordLogo from '../images/discord-logo.png'
+import './DiscordLoginButton.css'
 
 const DiscordLoginButton = () => {
   const handleLoginClick = async () => {
     try {
-      // Make a request to your backend's /login route
-      const response = await axios.get('/auth/discord'); // Update with your backend server URL
-
       // Redirect the user to the response URL (Discord OAuth2 flow)
-      window.location.href = response.data.url; // Assuming your backend sends the Discord OAuth2 authorization URL
+      window.location.href = "http://localhost:3001/api/users/auth/discord"; // Assuming your backend sends the Discord OAuth2 authorization URL
     } catch (error) {
       console.error('Error during login:', error.message);
     }
   };
 
   return (
-    <button onClick={handleLoginClick}>
+    <button className="discord-button" onClick={handleLoginClick}>
+      <img src={DiscordLogo} alt="Discord Logo" className="discord-logo" />
       Login with Discord
     </button>
   );
