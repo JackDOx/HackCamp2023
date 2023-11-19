@@ -7,23 +7,42 @@ const userSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: [true, 'Please tell us your name']
+      required: [true, 'Choose a username']
     },
-    email: {
-      type: String,
-      required: [true, 'Please provide email'],
-      unique: true,
-      lowercase: true,
-      validate: [validator.isEmail, 'Please provide a valid email']
-    },
+    // email: {
+    //   type: String,
+    //   required: [true, 'Please provide email'],
+    //   unique: true,
+    //   lowercase: true,
+    //   validate: [validator.isEmail, 'Please provide a valid email']
+    // },
     photo: {
       type: String,
       default: 'default.jpg'
     },
+    skillLevel: {
+      type: String,
+      enum: ['Beginner', 'Intermediate', 'Advanced'],
+      default: 'Beginner'
+    },
+    pronoun: {
+      type: String,
+      enum: ['He/Him', 'She/Her', 'They/Them', 'Prefer not to say'],
+      default: 'Prefer not to say'
+    },
     role: {
       type: String,
-      enum: ['admin', 'guide', 'lead-guide', 'user'],
+      enum: ['admin', 'guide', 'lead_guide', 'user'],
       default: 'user'
+    },
+    userRole: {
+      type: String,
+      enum: ['Developer', 'Designer', 'Product Manager', 'Presenter'],
+      default: 'user'
+    },
+    interests: {
+      type: String,
+      maxlength: [100, 'Enter up to 3 interests']
     },
     password: {
       type: String,
