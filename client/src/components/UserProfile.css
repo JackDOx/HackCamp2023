@@ -1,0 +1,124 @@
+/* UserProfile.css */
+
+.user-profile-card {
+    box-sizing: border-box;
+    width: 90%;
+    max-width: 500px;
+    margin: 20px auto;
+    /* Adjusted margin for spacing */
+    height: calc(100vh - 40px);
+    /* Full height of the viewport minus top and bottom margin */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    padding: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
+    font-family: 'Arial', sans-serif;
+    overflow-y: hidden; /* Hide vertical scrollbar */
+    padding: 20px; /* Adjust padding for overall spacing */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+label {
+    margin-top: 5px;
+    /* Increased margin between field prompts */
+    font-weight: bold;
+    font-size: 0.8rem;
+    color: #555;
+}
+
+input,
+textarea,
+button,
+checkbox {
+    width: calc(100% - 24px);
+    padding: 10px;
+    margin-top: 5px;
+    /* Increased margin between field components */
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.8rem;
+}
+
+textarea {
+    resize: vertical;
+}
+
+button {
+    background-color: #ff4d4d;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    padding: 12px;
+    font-size: 0.8rem;
+    margin-top: 20px; /* Space above the button */
+    width: 70%; /* Set button width to 70% */
+    display: block; /* Make the button a block element to center with 'auto' margins */
+    margin: 10px auto 15px; /* Adjust margin for spacing and centering */
+    margin-bottom: 20px;
+}
+
+button:hover {
+    background-color: #ff3333;
+}
+
+.flex-container {
+    display: flex;
+    align-items: center; /* Align items vertically */
+    margin-bottom: 15px; /* Space between each field */
+}
+
+.flex-container label {
+    flex-shrink: 0; /* Prevent label from shrinking */
+    margin-right: 10px; /* Space between label and input */
+    line-height: normal; /* Adjust line height for vertical alignment */
+}
+
+.flex-container input[type="text"],
+.flex-container input[type="checkbox"],
+.flex-container .select-buttons,
+.flex-container textarea {
+    flex-grow: 1; /* Input fields take up remaining space */
+    line-height: normal; /* Adjust line height for vertical alignment */
+    padding: 8px; /* Padding for inputs and textarea */
+}
+
+/* Adjustments for checkbox alignment */
+.flex-container input[type="checkbox"] {
+    align-self: center; /* Align the checkbox to the start of the container */
+}
+
+label, 
+.flex-container label {
+    /* ... existing label styles ... */
+    display: flex;
+    align-items: center; /* Vertically align label text */
+    margin-bottom: 5px; /* Space below each label */
+}
+
+input[type="text"],
+textarea,
+.flex-container input[type="text"],
+.flex-container textarea {
+    /* ... existing input and textarea styles ... */
+    padding: 8px 10px; /* Adjusted padding for alignment */
+    line-height: normal; /* Adjust line height to match label */
+    height: auto; /* Ensure consistent height with the label */
+}
+
+input[type="checkbox"],
+.flex-container input[type="checkbox"] {
+    /* ... existing checkbox styles ... */
+    align-self: center; /* Align the checkbox to the start */
+    margin-top: 0; /* Remove additional top margin */
+}

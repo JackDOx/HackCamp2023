@@ -1,0 +1,48 @@
+/* Select.css */
+
+.form-group {
+  display: flex;
+  align-items: center; /* Align items vertically in the center */
+  width: calc(100% - 24px); /* Match the width of other input elements */
+  margin-top: 15px; /* Consistent spacing */
+  flex-wrap: nowrap; /* Allow wrapping if buttons don't fit in one line */
+}
+
+.select-label {
+  font-weight: bold;
+  font-size: 0.8rem;
+  color: #555;
+  margin-right: 10px; /* Space between label and buttons */
+}
+
+.select-buttons {
+  display: flex;
+  align-items: center; /* Align buttons vertically in the center */
+  gap: 5px; /* Space between buttons */
+}
+
+.select-button {
+  background-color: white;
+  color: black; /* Ensure label is always visible */
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 8px 10px; /* Adjusted padding for better height */
+  font-size: 0.8rem; /* Smaller font size for better fit */
+  font-family: 'Arial', sans-serif; /* Consistent font family */
+  cursor: pointer;
+  text-align: center; /* Center the text inside the button */
+  white-space: nowrap; /* Prevent text wrapping */
+  flex-grow: 0; /* Prevent the button from growing */
+  flex-shrink: 0; /* Prevent the button from shrinking */
+  flex-basis: content; /* Base width on content */
+}
+
+.select-button.selected {
+  background-color: #ff6b6b; /* Lighter shade of the theme color */
+  color: white;
+  border-color: #ff6b6b;
+}
+
+.select-button:hover {
+  background-color: #ff6b6b;
+}
