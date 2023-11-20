@@ -1,11 +1,34 @@
 import React from 'react';
 import './UserProfile.css'; // Reuse the same CSS if it's suitable
-import axios from 'axios';
+import { useEffect } from 'react';
 
 function RecommendedProfile() {
-  const props = axios.get('http://localhost:3001/api/users/recommendations');
-  // Assume props contain the data received from the backend
-  const { name, pronouns, skillLevel, interests, preferredRole, lookingForTeammates } = props.users;
+  // const props = axios.get('http://localhost:3001/api/users/recommendations');
+  // // Assume props contain the data received from the backend
+  // const { name, pronouns, skillLevel, interests, preferredRole, lookingForTeammates } = props.users;
+ 
+  const name = ""
+  const pronouns = "";
+  const skillLevel = "";
+  const interests = ""; 
+  const preferredRole = "";
+  const lookingForTeammates = "";
+
+  useEffect(() => {
+    fetch('http://localhost:3001/api/users/recommendations')
+      .then(response => response.json())
+      .then(data => {
+        name = data.name;
+        pronouns = data.pronoun;
+        skillLevel = data.skillLevel;
+        interests = data.interests; 
+        preferredRole = data.preferredRole;
+        lookingForTeammates = data.lookingForTeammates;
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
   
 
   return (
