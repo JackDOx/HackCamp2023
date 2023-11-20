@@ -2,7 +2,6 @@ import React, { useState, useRef } from 'react';
 import ProfilePicUpload from './ProfilePicUpload';
 import './UserProfile.css';
 import Select from './Select';
-import Header from './components/Header'
 import axios from 'axios';
 
 function UserProfile() {
