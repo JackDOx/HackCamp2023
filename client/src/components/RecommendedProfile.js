@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './RecommendedProfile.css';
-import axios from 'axios';
+import DefaultProfilePic from '../images/default-profile-pic.jpeg'
+import ProfilePicDisplay from './ProfilePicDisplay';
+import HoverableHeader from './HoverableHeader'
 
 function RecommendedProfile() {
   const [profileData, setProfileData] = useState([]);
@@ -59,9 +61,11 @@ function RecommendedProfile() {
 
   return (
     <div>
-      <div className="user-profile-card">
+      <HoverableHeader />
+      <div className="user-profile-card recommended-profile-card">
         <form>
           {/* Display each piece of information in a similar layout to UserProfile */}
+          <ProfilePicDisplay file={DefaultProfilePic} />
           <div className="flex-container">
             <label>Name:</label>
             <span>{profileData.name}</span>
