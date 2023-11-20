@@ -7,7 +7,7 @@ const Matches = () => {
     const [cards, setCards] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:3001/api/users/getMatched', {
+        fetch('http://localhost:3001/api/users/getAllUsers', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
