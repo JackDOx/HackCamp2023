@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './RecommendedProfile.css';
 import axios from 'axios';
+import HoverableHeader from './HoverableHeader';
 
 function RecommendedProfile() {
   const [profileData, setProfileData] = useState({
@@ -64,6 +65,7 @@ function RecommendedProfile() {
 
   return (
     <div>
+    <HoverableHeader />
       <div className="user-profile-card">
         <form>
           {/* Display each piece of information in a similar layout to UserProfile */}
