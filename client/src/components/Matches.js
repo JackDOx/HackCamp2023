@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import HoverableHeader from './HoverableHeader';
 
 
 const Matches = () => {
@@ -6,7 +7,7 @@ const Matches = () => {
     const [cards, setCards] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:3001/api/users/getMatched', {
+        fetch('http://localhost:3001/api/users/getAllUsers', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -24,6 +25,8 @@ const Matches = () => {
     };
 
     return (
+        <div>
+            <HoverableHeader />
         <div style={{ display: 'flex', flexDirection: 'column', justifyItems: 'center', width: '100vw', alignContent: 'center' ,
         alignItems: 'center' }}>
             {cards.map((card) => (
@@ -50,6 +53,7 @@ const Matches = () => {
                     <button onClick={() => setSelectedCard(null)}>{selectedCard.discordName}</button>
                 </div>
             )}
+        </div>
         </div>
     );
 };

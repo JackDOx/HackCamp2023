@@ -3,12 +3,13 @@
 import React from 'react';
 import UserProfile from './components/UserProfile';
 import RecommendedProfile from './components/RecommendedProfile';
-import Header from './components/HoverableHeader'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import WelcomePage from './components/WelcomePage'
 import Matches from './components/Matches'
 
 const App = () => {
+  // const currentPathname = window.location.pathname;
+  // module.exports = currentPathname.split('/').pop();
   return (
     <Router>
       <Routes>
@@ -20,5 +21,7 @@ const App = () => {
     </Router>
   );
 };
+
+
 
 export default App;

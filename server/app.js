@@ -84,6 +84,19 @@ app.use(hpp({
 
 app.use(compression());
 
+app.use(
+  session({
+    secret: 'your-secret-key',
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+      domain: 'localhost:3000', // Set the common domain
+      httpOnly: true,
+      secure: false, // Set to true in production with HTTPS
+    },
+  })
+);
+
 const discordClientId = process.env.DISCORDCLIENT;
 const discordClientSecret = process.env.DISCORDCLIENTSECRET;
 const discordRedirectUri = process.env.DISCORDREDIRECT;

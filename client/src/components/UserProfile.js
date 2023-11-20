@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import ProfilePicUpload from './ProfilePicUpload';
 import './UserProfile.css';
-import Select from './Select'; // Adjust the path based on your project structure
+import Select from './Select';
 import axios from 'axios';
 
 function UserProfile() {
