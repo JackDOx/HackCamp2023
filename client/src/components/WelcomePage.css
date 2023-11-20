@@ -3,6 +3,7 @@ body, html {
     margin: 0;
     padding: 0;
     height: 100%;
+    background-color:rgb(254, 252, 252)
   }
   
   /* Center the content both vertically and horizontally */
@@ -16,7 +17,7 @@ body, html {
   
   /* Style the logo as big as the Google logo */
   .logo {
-    max-width: 300px; /* Adjust the width as needed */
+    max-width: 320px; /* Adjust the width as needed */
     max-height: auto; /* Adjust the height as needed */
   }
   

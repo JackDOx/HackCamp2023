@@ -1,6 +1,9 @@
 import React from 'react';
 import './RecommendedProfile.css';
 import { useEffect } from 'react';
+import DefaultProfilePic from '../images/default-profile-pic.jpeg'
+import ProfilePicDisplay from './ProfilePicDisplay';
+import HoverableHeader from './HoverableHeader'
 
 function RecommendedProfile() {
   const name = ""
@@ -26,20 +29,17 @@ function RecommendedProfile() {
       });
   }, []);
   
-
   return (
     <div>
-        <div className="user-profile-card">
+        <HoverableHeader />
+        <div className="user-profile-card recommended-profile-card">
             <form>
                 {/* Display each piece of information in a similar layout to UserProfile */}
+                <ProfilePicDisplay file={DefaultProfilePic} />
+                
                 <div className="flex-container">
                 <label>Name:</label>
-                <span>{name}</span>
-                </div>
-
-                <div className="flex-container">
-                <label>Pronouns:</label>
-                <span>{pronouns}</span>
+                <span>{name} ({pronouns})</span>
                 </div>
 
                 <div className="flex-container">
