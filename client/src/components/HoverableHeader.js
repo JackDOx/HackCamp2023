@@ -5,7 +5,7 @@ import TransparentLogo from "../images/fuse-logo-trans.png"
 const HoverableHeader = () => {
   return (
     <div className="hoverable-header">
-      <img src={TransparentLogo} alt="Logo" className="logo" />
+      <img src={TransparentLogo} alt="Logo" className="headerLogo" />
       <div className="dropdown">
         <label>Filter by:</label>
         <select>

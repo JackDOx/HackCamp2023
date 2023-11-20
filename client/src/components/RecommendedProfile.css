@@ -10,7 +10,15 @@
     margin-top: 40px;
     gap: 50px;
   }
-  
+
+/* Styles for the button icons (adjust as needed) */
+.button-container button i {
+  color: #fff; /* Adjust the icon color */
+  font-size: 24px; /* Adjust the icon size */
+  position: relative;
+  z-index: 1; /* Ensure icons are above the pseudo-elements */
+}
+
   .heart-button,
   .cross-button {
     border: none;

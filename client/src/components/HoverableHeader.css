@@ -29,8 +29,9 @@
   opacity: 1; /* Change opacity to 1 on hover */
 }
 
-.logo {
+.headerLogo {
   font-weight: bold;
+  width: 100px;
 }
 
 .dropdown {
@@ -55,8 +56,4 @@ select {
     border: none;
     cursor: pointer;
   }
-}
-
-.logo {
-  width: 100px;
 }
