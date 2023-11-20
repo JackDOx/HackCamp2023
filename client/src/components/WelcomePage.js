@@ -1,6 +1,6 @@
 import React from 'react';
 import './WelcomePage.css'; // Import the CSS file for styling
-import Logo from '../images/fuse-logo.png'
+import Logo from '../images/fuse-logo.gif'
 import DiscordLoginButton from './DiscordLoginButton';
 
 const WelcomePage = () => {

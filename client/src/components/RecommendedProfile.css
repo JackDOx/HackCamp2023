@@ -1,16 +1,6 @@
 
-.user-profile-card {
+.recommended-profile-card{
     height: 80vh;
-  }
-  /* Adjust the position of the card's bottom border */
-  .user-profile-card::after {
-    content: '';
-    position: absolute;
-    bottom: -20%; /* Move the border up by 20% of the screen height */
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background-color: #ccc; /* Border color */
   }
     /* Style the heart and X buttons */
   .button-container {
@@ -18,7 +8,7 @@
     justify-content: center; /* Center the buttons horizontally */
     align-items: center; /* Center the buttons vertically */
     margin-top: 40px;
-    gap: 30px;
+    gap: 50px;
   }
   
   .heart-button,
@@ -27,8 +17,8 @@
     border-radius: 50%; /* Make the buttons circular */
     cursor: pointer;
     font-size: 16px; /* Adjust font size for smaller buttons */
-    width: 40px; /* Set button width */
-    height: 40px; /* Set button height */
+    width: 50px; /* Set button width */
+    height: 50px; /* Set button height */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -43,4 +33,10 @@
     background-color: #777; /* X button color */
   }
 
-  
+  span {
+    font-size: 0.8rem;
+  }
+
+  label {
+    color: #9d1111;
+  }

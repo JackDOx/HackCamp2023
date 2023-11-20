@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 
-const Matched = () => {
+const Matches = () => {
     const [selectedCard, setSelectedCard] = useState(null);
     const [cards, setCards] = useState([]);
 
@@ -54,4 +54,4 @@ const Matched = () => {
     );
 };
 
-export default Matched;
+export default Matches;

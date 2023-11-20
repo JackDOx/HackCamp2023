@@ -1,0 +1,62 @@
+.hoverable-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: transparent; /* Set the initial background color to transparent */
+  transition: background-color 0.3s ease; /* Add a transition effect for background color */
+  padding: 10px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+/* Apply styles to the header when hovered over */
+.hoverable-header:hover {
+  background-color: #ffffff; /* Change background color on hover */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Make child elements transparent by default */
+.hoverable-header * {
+  opacity: 0; /* Set opacity to 0 by default */
+  transition: opacity 0.3s ease; /* Add a transition effect for opacity */
+}
+
+/* Apply styles to child elements when header is hovered over */
+.hoverable-header:hover * {
+  opacity: 1; /* Change opacity to 1 on hover */
+}
+
+.logo {
+  font-weight: bold;
+}
+
+.dropdown {
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+}
+
+label {
+  margin-right: 10px;
+}
+
+select {
+  padding: 5px;
+}
+
+.matches-button {
+  button {
+    padding: 10px 20px;
+    background-color: #ff4d4d;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+.logo {
+  width: 100px;
+}
