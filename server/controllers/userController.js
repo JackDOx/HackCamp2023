@@ -27,6 +27,64 @@ exports.getAllUsers = catchAsync( async (req, res, next) => {
   });
 });
 
+exports.updateProfile = catchAsync(async (req, res, next) => {
+  // Assuming req.body contains a JSON object with user data
+  const user = req.body;
+
+  const discordNameToUpdate = user.discordName;
+
+  if (!user.profilePic) {
+    console.log('No profile picture found');
+  }
+
+  // Decode base64 data and create a buffer
+  const imageBuffer = Buffer.from(user.profilePic, 'base64');
+  const filename = `${discordNameToUpdate}.png`;
+
+  // Resize and save the image to local storage
+  sharp(imageBuffer)
+    .resize(500, 500)
+    .toFormat('png')
+    .jpeg({ quality: 90 })
+    .toFile(`devdata/img/users/${filename}`, (err) => {
+      if (err) {
+        return next(err); // Pass the error to the error handling middleware
+      }
+
+      console.log('Profile picture saved successfully:', filename);
+
+      // Update the user in MongoDB
+      User.updateOne({ username: discordNameToUpdate }, {
+        $set: {
+          name: user.name,
+          role: user.role,
+          discordName: user.discordName,
+          skillLevel: user.skillLevel,
+          userRole: user.userRole,
+          interests: user.interests,
+          pronoun: user.pronoun,
+          lookingForTeam: user.lookingForTeam,
+          photo: `devdata/img/users/${filename}`,
+        },
+      })
+        .then((result) => {
+          console.log('User updated successfully:', result);
+          res.status(201).json({
+            status: 'Success',
+            data: {
+              user: result,
+            },
+          });
+        })
+        .catch((updateError) => {
+          return next(updateError); // Pass the update error to the error handling middleware
+        });
+    });
+    res.status(200).json({
+      status: 'Success',
+      users: doc
+    });
+});
 
 exports.getRecommendations = catchAsync( async (req, res, next) => {
   const roleToFind = req.body.role;
@@ -37,6 +95,40 @@ exports.getRecommendations = catchAsync( async (req, res, next) => {
     users: doc
   });
 });
+
+exports.getMatched = catchAsync(async (req, res, next) => {
+  try {
+    const matched = req.user.matched;
+    console.log(matched);
+
+    const doc = await Promise.all(
+      matched.map(async (m) => {
+        try {
+          return await User.findOne({ discordName: m });
+        } catch (error) {
+          // Handle the error for the specific User.findOne call
+          console.error(`Error in User.findOne for ${m}:`, error.message);
+          return null; // or another value to indicate the error
+        }
+      })
+    );
+
+    console.log(doc);
+
+    res.status(200).json({
+      status: 'success',
+      users: doc,
+    });
+  } catch (error) {
+    // Handle any general error in the main try-catch block
+    console.error('Error in getMatched:', error.message);
+    res.status(500).json({
+      status: 'error',
+      message: 'Internal Server Error',
+    });
+  }
+});
+
 
 exports.swipe = catchAsync( async (req, res, next) => {
   if (!req.body.user) {

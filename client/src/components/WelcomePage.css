@@ -1,0 +1,22 @@
+/* Reset default margin and padding */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  
+  /* Center the content both vertically and horizontally */
+  .welcome-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Style the logo as big as the Google logo */
+  .logo {
+    max-width: 300px; /* Adjust the width as needed */
+    max-height: auto; /* Adjust the height as needed */
+  }
+  
