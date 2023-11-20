@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './RecommendedProfile.css';
 import axios from 'axios';
 
+// const authCOntroller = require('./../../../server/controllers/authController');
+
 function RecommendedProfile() {
   const [profileData, setProfileData] = useState({
     name: '',
@@ -15,7 +17,14 @@ function RecommendedProfile() {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
 
   useEffect(() => {
-    fetch('http://localhost:3001/api/users/recommendations')
+    // const user = req.user.username; // Replace this with the actual way you access req.user on the frontend
+  
+    fetch('http://localhost:3001/api/users/getAllUsers', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
       .then(response => response.json())
       .then(data => {
         setProfileData(data);
@@ -24,22 +33,24 @@ function RecommendedProfile() {
         console.error('Error fetching data:', error);
       });
   }, []);
+  
+  
 
   const handleSwipeLeft = () => {
     // Perform actions when swiped left
     console.log('Swiped left on card:', profileData.name);
     // Move to the next card
-    axios.get('http://localhost:3001/api/users/swipe', {
-      params: {
-        user: profileData // Replace 'discordName' with the actual parameter name for Discord name
-      }
-    })
-      .then(response => {
-        // Handle the response if needed
-      })
-      .catch(error => {
-        console.error('Error swiping left:', error);
-      });
+    // axios.get('http://localhost:3001/api/users/swipe', {
+    //   params: {
+    //     user: profileData // Replace 'discordName' with the actual parameter name for Discord name
+    //   }
+    // })
+    //   .then(response => {
+    //     // Handle the response if needed
+    //   })
+    //   .catch(error => {
+    //     console.error('Error swiping left:', error);
+    //   });
 
     setCurrentCardIndex(prevIndex => (prevIndex + 1) % 3); // Assuming 3 cards for example
   };
@@ -48,17 +59,17 @@ function RecommendedProfile() {
     // Perform actions when swiped right
     console.log('Swiped right on card:', profileData.name);
     // Move to the next card
-    axios.get('http://localhost:3001/api/users/swipe', {
-      params: {
-        user: profileData // Replace 'discordName' with the actual parameter name for Discord name
-      }
-    })
-      .then(response => {
-        // Handle the response if needed
-      })
-      .catch(error => {
-        console.error('Error swiping left:', error);
-      });
+    // axios.get('http://localhost:3001/api/users/swipe', {
+    //   params: {
+    //     user: profileData // Replace 'discordName' with the actual parameter name for Discord name
+    //   }
+    // })
+    //   .then(response => {
+    //     // Handle the response if needed
+    //   })
+    //   .catch(error => {
+    //     console.error('Error swiping left:', error);
+    //   });
     setCurrentCardIndex(prevIndex => (prevIndex + 1) % 3); // Assuming 3 cards for example
   };
 
