@@ -56,7 +56,7 @@ const limiter = rateLimit({
     message: 'Too many requests from this ip, please try again in an hour'
 });
 
-app.use('/api', limiter); // apply this limiter to /api
+// app.use('/api', limiter); // apply this limiter to /api
 
 // webhook need to be read in a raw data, not in json format
 // app.post('/webhook-checkout', bodyParser.raw({ type: 'application/json' }), ........);
