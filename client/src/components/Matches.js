@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import HoverableHeader from './HoverableHeader';
 
 
 const Matches = () => {
@@ -24,6 +25,8 @@ const Matches = () => {
     };
 
     return (
+        <div>
+            <HoverableHeader />
         <div style={{ display: 'flex', flexDirection: 'column', justifyItems: 'center', width: '100vw', alignContent: 'center' ,
         alignItems: 'center' }}>
             {cards.map((card) => (
@@ -50,6 +53,7 @@ const Matches = () => {
                     <button onClick={() => setSelectedCard(null)}>{selectedCard.discordName}</button>
                 </div>
             )}
+        </div>
         </div>
     );
 };
