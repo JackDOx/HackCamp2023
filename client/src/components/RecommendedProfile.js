@@ -1,6 +1,6 @@
 import React from 'react';
-import './UserProfile.css'; // Reuse the same CSS if it's suitable
 import axios from 'axios';
+import './RecommendedProfile.css'
 
 function RecommendedProfile() {
   const props = axios.get('http://localhost:3001/api/users/recommendations');
